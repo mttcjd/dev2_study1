@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-    @Autowired
-    private final ProjectService projectService;
+    //private final ProjectService projectService;
 
     @RequestMapping("/")
     public String main(Model model) {
-        model.addAttribute("list", projectService.selectProject());
+        //model.addAttribute("list", projectService.selectProject());
         return "project_list";
     }
 

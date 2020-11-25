@@ -17,7 +17,7 @@ public class ProjectService {
 
     @Transactional(readOnly = true)
     public List<ProjectEntity> selectProject(){
-        //List<ProjectEntity> prjList = projectRepository.findAll();
+        List<ProjectEntity> prjList = projectRepository.findAll();
         return projectRepository.findAll();
     }
 }
