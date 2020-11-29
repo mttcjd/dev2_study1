@@ -1,23 +1,24 @@
 package com.dev.study.service;
 
-import com.dev.study.entity.ProjectEntity;
-import com.dev.study.entity.ProjectRepository;
+import com.dev.study.dto.ProjectDto;
+import com.dev.study.domain.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class ProjectService {
 
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true)
-    public List<ProjectEntity> selectProject(){
-        List<ProjectEntity> prjList = projectRepository.findAll();
-        return projectRepository.findAll();
+    public List<ProjectDto> selectProject(){
+        return projectRepository.selectProject().stream()
+                .map(ProjectDto::new)
+                .collect(Collectors.toList());
     }
 }

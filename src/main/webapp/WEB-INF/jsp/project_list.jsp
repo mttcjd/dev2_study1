@@ -60,7 +60,7 @@
 				<table>
 					<thead>
 					<tr>
-						<th>NO</th>
+						<th>NOddd</th>
 						<th>프로젝트명</th>
 						<th>담당자</th>
 						<th>상태</th>
@@ -69,46 +69,21 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>1</td>
-						<td>냉매</td>
-						<td>신혜욱</td>
-						<td>완료</td>
-						<td>2020-10-02</td>
-						<td><a href="#none" class="view-btn">상세보기</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>냉매</td>
-						<td>신혜욱</td>
-						<td>완료</td>
-						<td>2020-10-02</td>
-						<td><a href="#none" class="view-btn">상세보기</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>냉매</td>
-						<td>신혜욱</td>
-						<td>완료</td>
-						<td>2020-10-02</td>
-						<td><a href="#none" class="view-btn">상세보기</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>냉매</td>
-						<td>신혜욱</td>
-						<td>완료</td>
-						<td>2020-10-02</td>
-						<td><a href="#none" class="view-btn">상세보기</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>냉매</td>
-						<td>신혜욱</td>
-						<td>완료</td>
-						<td>2020-10-02</td>
-						<td><a href="#none" class="view-btn">상세보기</a></td>
-					</tr>
+					<c:forEach var="item" items="${list}" varStatus="idx">
+						<tr>
+							<td>${idx.count}</td>
+							<td>${item.pjt_title}</td>
+							<td>-</td>
+							<td>${item.amount}</td>
+							<td>2020-10-02</td>
+							<td><a href="#none" class="view-btn">상세보기</a></td>
+						</tr>
+					</c:forEach>
+					<c:if test="${empty list}">
+						<tr>
+							<td colspan="6">등록된 프로젝트가 없습니다dfdfdf.</td>
+						</tr>
+					</c:if>
 					</tbody>
 				</table>
 				<article class="paging">
