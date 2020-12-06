@@ -1,4 +1,4 @@
-package com.dev.study.domain;
+package com.dev.study.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +18,6 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="u_id")
     private Long id;
 
     @Column(length = 100)
@@ -33,8 +32,6 @@ public class UserEntity {
     @Column(length = 100)
     private String tel_no;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserEntity> userlist = new ArrayList<UserEntity>();
 
     @Builder
     public UserEntity(String user_id, String user_pw, String corp_nm, String tel_no) {

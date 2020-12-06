@@ -13,6 +13,8 @@ public class ProjectDto {
     private String pjt_status;
     private int amount;
     private String manager_id;
+    private String createdDate;
+    private String modifiedDate;
 
     public ProjectDto(ProjectEntity entity){
         this.id = entity.getId();
@@ -22,6 +24,8 @@ public class ProjectDto {
         this.pjt_status = entity.getPjt_status();
         this.amount = entity.getAmount();
         this.manager_id = entity.getManager_id();
+        this.createdDate = entity.getCreatedDate().toString();
+        this.modifiedDate = entity.getModifiedDate().toString();
     }
 
 

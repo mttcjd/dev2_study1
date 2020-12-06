@@ -1,45 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	  content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<head>
-	<meta charset="UTF-8">
-	<title>프로젝트 관리 - 목록</title>
-	<link type="text/css" rel="stylesheet" href="../css/reset.css"/>
-	<link type="text/css" rel="stylesheet" href="../css/ui.css"/>
-	<link type="text/css" rel="stylesheet" href="../css/style.css"/>
-</head>
-<body>
-<div class="container">
-
-	<header>
-
-		<div class="inner">
-
-			<div class="header__menu">
-				<nav>
-					<ul>
-						<li><a href="#none" class="current">프로젝트 관리</a></li>
-						<li><a href="#none">프로젝트 등록</a></li>
-						<li><a href="#none">담당자 관리</a></li>
-					</ul>
-				</nav>
-
-
-				<div class="header_menu__right">
-					<a href="/">로그인</a>
-					<a href="#none">회원가입</a>
-
-					<a href="#none">로그아웃</a>
-				</div>
-			</div>
-
-		</div>
-	</header>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:import url="header.jsp"/>
 
 	<div class="wrapper">
 
@@ -60,7 +22,7 @@
 				<table>
 					<thead>
 					<tr>
-						<th>NOddd</th>
+						<th>NO</th>
 						<th>프로젝트명</th>
 						<th>담당자</th>
 						<th>상태</th>
@@ -74,14 +36,14 @@
 							<td>${idx.count}</td>
 							<td>${item.pjt_title}</td>
 							<td>-</td>
-							<td>${item.amount}</td>
-							<td>2020-10-02</td>
-							<td><a href="#none" class="view-btn">상세보기</a></td>
+							<td>${item.pjt_status eq '1' ? '대기' : (item.pjt_status eq '2' ? '진행중' : '완료')}</td>
+							<td>${fn:substring(item.createdDate,0,10)}</td>
+							<td><a href="/project/${item.id}" class="view-btn">상세보기</a></td>
 						</tr>
 					</c:forEach>
 					<c:if test="${empty list}">
 						<tr>
-							<td colspan="6">등록된 프로젝트가 없습니다dfdfdf.</td>
+							<td colspan="6">등록된 프로젝트가 없습니다.</td>
 						</tr>
 					</c:if>
 					</tbody>
@@ -99,12 +61,4 @@
 	</div>
 
 
-
-</div>
-
-<script src="../js/jquery-3.1.1.min.js"></script>
-<script src="../js/jquery-ui-1.12.1.js"></script>
-<script src="../js/ui.js"></script>
-
-</body>
-</html>
+<c:import url="footer.jsp"/>

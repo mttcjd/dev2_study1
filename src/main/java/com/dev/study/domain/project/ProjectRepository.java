@@ -8,5 +8,8 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<ProjectEntity, Long> {
     @Query("SELECT p FROM ProjectEntity p ORDER BY p.id DESC")
-    List<ProjectEntity> selectProject();
+    List<ProjectEntity> selectProjectList();
+
 }
+
+
