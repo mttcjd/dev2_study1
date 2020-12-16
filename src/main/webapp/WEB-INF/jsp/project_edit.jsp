@@ -93,6 +93,9 @@
 				type: 'PUT',
 				url: '/project/update/${project.id}',
 				dataType: 'json',
+				beforeSend : function(xhr){
+					xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
+				},
 				contentType:'application/json; charset=utf-8',
 				data: JSON.stringify(data)
 			}).done(function(){

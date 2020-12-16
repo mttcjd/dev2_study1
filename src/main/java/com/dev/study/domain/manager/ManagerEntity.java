@@ -25,15 +25,15 @@ public class ManagerEntity extends BaseTimeEntity {
     @Column(length = 100)
     private String manager_tel;
 
-    @Column(length = 100)
-    private String manager_name;
+    @Column(length = 100, name = "manager_name")
+    private String managerName;
 
 
     @Builder
-    public ManagerEntity(String user_id, String manager_tel, String manager_name) {
+    public ManagerEntity(String user_id, String manager_tel, String managerName) {
         this.user_id = user_id;
         this.manager_tel = manager_tel;
-        this.manager_name = manager_name;
+        this.managerName = managerName;
     }
 
 }

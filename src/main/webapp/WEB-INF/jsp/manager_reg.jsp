@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:import url="header.jsp"/>
 
 
 <div class="wrapper">
-
 
 	<article class="table-set">
 		<div class="inner">
@@ -40,7 +40,7 @@
 		save : function (){
 
 			var data = {
-				user_id : 'test',
+				user_id : '<sec:authentication property="name" />',
 				manager_name : $('input[name=manager_name]').val(),
 				manager_tel : $('input[name=manager_tel]').val(),
 			}
@@ -49,6 +49,9 @@
 				type: 'POST',
 				url: '/manager/save',
 				dataType: 'json',
+				beforeSend : function(xhr){
+					xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
+				},
 				contentType:'application/json; charset=utf-8',
 				data: JSON.stringify(data)
 			}).done(function(){

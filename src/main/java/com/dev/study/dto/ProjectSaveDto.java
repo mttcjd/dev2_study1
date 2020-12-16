@@ -29,7 +29,7 @@ public class ProjectSaveDto {
     public ProjectEntity toEntity(){
         return ProjectEntity.builder()
                 .user_id(user_id)
-                .pjt_title(pjt_title)
+                .pjtTitle(pjt_title)
                 .pjt_desc(pjt_desc)
                 .pjt_status(pjt_status)
                 .amount(amount)

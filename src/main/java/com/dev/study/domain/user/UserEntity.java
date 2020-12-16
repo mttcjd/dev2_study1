@@ -20,11 +20,11 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100)
-    private String user_id;
+    @Column(length = 100, name="user_id")
+    private String userId;
 
-    @Column(length = 100)
-    private String user_pw;
+    @Column(length = 100, name="user_pw")
+    private String userPw;
 
     @Column(length = 100)
     private String corp_nm;
@@ -34,9 +34,9 @@ public class UserEntity {
 
 
     @Builder
-    public UserEntity(String user_id, String user_pw, String corp_nm, String tel_no) {
-        this.user_id = user_id;
-        this.user_pw = user_pw;
+    public UserEntity(String userId, String userPw, String corp_nm, String tel_no) {
+        this.userId = userId;
+        this.userPw = userPw;
         this.corp_nm = corp_nm;
         this.tel_no = tel_no;
     }

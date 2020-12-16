@@ -27,7 +27,7 @@ public class ManagerSaveDto {
         return ManagerEntity.builder()
                 .user_id(user_id)
                 .manager_tel(manager_tel)
-                .manager_name(manager_name)
+                .managerName(manager_name)
                 .build();
     }
 }

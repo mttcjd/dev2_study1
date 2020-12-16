@@ -20,7 +20,7 @@ public class ManagerDto {
         this.id = manager.getId();
         this.user_id = manager.getUser_id();
         this.manager_tel = manager.getManager_tel();
-        this.manager_name = manager.getManager_name();
+        this.manager_name = manager.getManagerName();
         this.createdDate = manager.getCreatedDate().toString();
         this.modifiedDate = manager.getModifiedDate().toString();
     }

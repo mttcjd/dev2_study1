@@ -1,12 +1,13 @@
 package com.dev.study.domain.project;
 
 import com.dev.study.domain.BaseTimeEntity;
+import com.dev.study.domain.manager.ManagerEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -21,8 +22,8 @@ public class ProjectEntity extends BaseTimeEntity {
     @Column(length = 100)
     private String user_id;
 
-    @Column(length = 200)
-    private String pjt_title;
+    @Column(length = 200, name = "pjt_title")
+    private String pjtTitle;
 
     @Column(length = 4000)
     private String pjt_desc;
@@ -36,19 +37,25 @@ public class ProjectEntity extends BaseTimeEntity {
     @Column(length = 100)
     private String manager_id;
 
+    @ManyToOne
+    @JoinColumn(name = "regBy", insertable = false, updatable = false)
+    @JsonIgnore
+    private ManagerEntity manager;
+
 
     @Builder
-    public ProjectEntity(String user_id, String pjt_title, String pjt_desc, String pjt_status, int amount, String manager_id) {
+    public ProjectEntity(String user_id, String pjtTitle, String pjt_desc, String pjt_status, int amount, String manager_id, ManagerEntity manager) {
         this.user_id = user_id;
-        this.pjt_title = pjt_title;
+        this.pjtTitle = pjtTitle;
         this.pjt_desc = pjt_desc;
         this.pjt_status = pjt_status;
         this.amount = amount;
         this.manager_id = manager_id;
+        this.manager = manager;
     }
 
-    public void update(String pjt_title, String pjt_desc, String pjt_status, int amount, String manager_id) {
-        this.pjt_title = pjt_title;
+    public void update(String pjtTitle, String pjt_desc, String pjt_status, int amount, String manager_id) {
+        this.pjtTitle = pjtTitle;
         if(pjt_desc != null) this.pjt_desc = pjt_desc;
         this.pjt_status = pjt_status;
         this.amount = amount;

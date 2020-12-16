@@ -6,6 +6,8 @@ import com.dev.study.domain.project.ProjectRepository;
 import com.dev.study.dto.ProjectSaveDto;
 import com.dev.study.dto.ProjectUpdateDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +21,28 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
 
     @Transactional(readOnly = true) // 조회만
-    public List<ProjectDto> selectProjectList(){
-        return projectRepository.selectProjectList().stream()
+    public Page<ProjectDto> selectProjectList(Pageable pageRequest){
+        /*return projectRepository.selectProjectList().stream()
                 .map(ProjectDto::new)
                 .collect(Collectors.toList());
+    */
+        Page<ProjectEntity> projectList = projectRepository.findAllBy(pageRequest);
+
+        Page<ProjectDto> pagingList = projectList.map(project -> new ProjectDto(project));
+
+        return pagingList;
+
+    }
+
+    @Transactional(readOnly = true) // 조회만
+    public Page<ProjectDto> selectProjectList(Pageable pageRequest, String keyword){
+
+        Page<ProjectEntity> projectList = projectRepository.findByPjtTitleContaining(pageRequest,keyword);
+
+        Page<ProjectDto> pagingList = projectList.map(project -> new ProjectDto(project));
+
+        return pagingList;
+
     }
 
     @Transactional(readOnly = true)
